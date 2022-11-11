@@ -1,4 +1,4 @@
-FROM russianpostman/sprint16_final:latest
+FROM russianpostman/api_yamdb_web:latest
 
 WORKDIR /app
 

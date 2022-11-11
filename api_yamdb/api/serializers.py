@@ -3,7 +3,6 @@ from django.db.models import Avg
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from rest_framework import serializers
-
 from reviews.models import Category, Comment, Genre, Review, Title
 
 User = get_user_model()

@@ -47,7 +47,7 @@ jobs:
           context: ./api_yamdb
           file: ./api_yamdb/Dockerfile
           push: true
-          tags: russianpostman/sprint16_final:latest 
+          tags: russianpostman/api_yamdb_web 
 
   deploy:
     runs-on: ubuntu-latest

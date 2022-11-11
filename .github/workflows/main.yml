@@ -61,7 +61,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
-          sudo docker pull russianpostman/sprint16_final
+          sudo docker pull russianpostman/api_yamdb_web
           sudo docker stop $(sudo docker ps -a -q)
           cd infra/
           touch .env

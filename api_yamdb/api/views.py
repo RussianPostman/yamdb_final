@@ -45,8 +45,8 @@ class ReviewViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         title_id = self.kwargs.get('title_id')
-        review_queryset = Review.objects.filter(title=title_id)
-        return review_queryset
+        # review_queryset = Review.objects.filter(title=title_id)
+        return Review.objects.filter(title=title_id)
 
 
 class GenreViewSet(CreateListDestroyViewSet):

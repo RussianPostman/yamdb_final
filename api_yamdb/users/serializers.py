@@ -34,5 +34,5 @@ class UserSerializer(serializers.ModelSerializer):
         req_user = self.context['request'].user
         user = User.objects.get(username=req_user)
         if user.is_user:
-            role = user.role
+            return user.role
         return role

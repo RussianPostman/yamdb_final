@@ -1,4 +1,4 @@
-FROM python:3.7-slim
+FROM russianpostman/sprint16_final:latest
 
 WORKDIR /app
 

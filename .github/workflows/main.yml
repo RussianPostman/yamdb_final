@@ -61,8 +61,9 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
+          sudo docker-compose stop
+          sudo docker-compose rm web
           sudo docker pull russianpostman/api_yamdb_web
-          sudo docker stop $(sudo docker ps -a -q)
           cd infra/
           touch .env
           echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env

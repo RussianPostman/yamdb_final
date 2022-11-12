@@ -64,7 +64,6 @@ jobs:
           sudo docker-compose stop
           sudo docker-compose rm web
           sudo docker pull russianpostman/api_yamdb_web
-          cd infra/
           touch .env
           echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
           echo DB_NAME=${{ secrets.DB_NAME }} >> .env

@@ -61,8 +61,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
-          sudo docker-compose stop
-          sudo docker-compose rm web
+          sudo docker-compose down -v 
           sudo docker pull russianpostman/api_yamdb_web
           touch .env
           echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
@@ -73,6 +72,11 @@ jobs:
           echo DB_PORT=${{ secrets.DB_PORT }} >> .env
           echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
           sudo docker-compose up -d
+          sudo docker-compose exec web python manage.py makemigrations users
+          sudo docker-compose exec web python manage.py makemigrations reviews
+          sudo docker-compose exec web python manage.py migrate
+          sudo docker-compose exec web python manage.py createsuperuser
+          sudo docker-compose exec web python manage.py collectstatic --no-input
 
   send_message:      
     needs: deploy

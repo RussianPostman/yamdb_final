@@ -62,6 +62,7 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
           sudo docker-compose down -v 
+          sudo docker image rm russianpostman/api_yamdb_web
           sudo docker pull russianpostman/api_yamdb_web
           touch .env
           echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env

@@ -82,4 +82,4 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: $Пуш и деплой проекта {{ github.workflow }} выполнен успешно.
+          message: Пуш и деплой проекта {{ github.workflow }} выполнен успешно.

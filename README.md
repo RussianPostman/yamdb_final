@@ -2,6 +2,11 @@
 
 ![Deploy badgel](https://github.com/RussianPostman/yamdb_final/actions/workflows/main.yml/badge.svg)
 
+## Ссылка на проверку проекта:
+```
+http://84.201.178.88/admin/login/?next=/admin/
+```
+
 ## Описание
 Приложение для оценки различных произведений
 

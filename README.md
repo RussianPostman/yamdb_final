@@ -10,9 +10,9 @@ http://84.201.178.88/admin/login/?next=/admin/
 ## Описание
 Приложение для оценки различных произведений
 
-Проект YaMDb собирает отзывы пользователей на произведения. Произведения делятся на категории: «Книги», «Фильмы», «Музыка». Список категорий может быть расширен администратором.
+Проект Infra_sp2 собирает отзывы пользователей на произведения. Произведения делятся на категории: «Книги», «Фильмы», «Музыка». Список категорий может быть расширен администратором.
 
-Сами произведения в YaMDb не хранятся, здесь нельзя посмотреть фильм или послушать музыку.
+Сами произведения в Infra_sp2 не хранятся, здесь нельзя посмотреть фильм или послушать музыку.
 
 В каждой категории есть произведения: книги, фильмы или музыка. Например, в категории «Книги» могут быть произведения «Винни-Пух и все-все-все» и «Марсианские хроники», а в категории «Музыка» — песня «Давеча» группы «Насекомые» и вторая сюита Баха.
 
@@ -20,55 +20,37 @@ http://84.201.178.88/admin/login/?next=/admin/
 
 Благодарные или возмущённые пользователи оставляют к произведениям текстовые отзывы и ставят произведению оценку в диапазоне от одного до десяти; из пользовательских оценок формируется усреднённая оценка произведения — рейтинг. На одно произведение пользователь может оставить только один отзыв.
 
-## Техническое описание проекта YaMDb
+## Схема наполнения файла .env проекта Infra_sp2
+Файл необходимо разместить в директории infra_sp2/infra/
+
+```
+DB_ENGINE=django.db.backends.postgresql # указываем, что работаем с postgresql
+DB_NAME=postgres # имя базы данных
+POSTGRES_USER=postgres # логин для подключения к базе данных
+POSTGRES_PASSWORD=postgres # пароль для подключения к БД (установите свой)
+DB_HOST=db # название сервиса (контейнера)
+DB_PORT=5432 # порт для подключения к БД
+SECRET_KEY=************** # Секретный ключ вашего проекта
+```
+
+## Техническое описание проекта Infra_sp2
 
 Для запуска проекта необходимо клонировать репозиторий и перейти в него в командной строке:
 
 ```
-git clone https://github.com/RussianPostman/api_yamdb.git
-cd api_yamdb
+git clone https://github.com/RussianPostman/Infra_sp2
+cd infra
+docker-compose up -d --build
+docker-compose exec web python manage.py makemigrations users
+docker-compose exec web python manage.py makemigrations reviews
+docker-compose exec web python manage.py migrate
+docker-compose exec web python manage.py createsuperuser
+docker-compose exec web python manage.py collectstatic --no-input
 ```
-
-Cоздать и активировать виртуальное окружение:
-
-```
-python3 -m venv venv        (для *nix-систем)
-source venv/bin/activate    (для *nix-систем)
-```
-
-```
-python -m venv venv         (для Windows-систем)
-env/Scripts/activate.bat    (для Windows-систем)
-```
-
-Установить зависимости из файла requirements.txt:
-
-```
-python3 -m pip install --upgrade pip    (для *nix-систем)
-python -m pip install --upgrade pip     (для Windows-систем)
-```
-```
-pip install -r requirements.txt
-```
-
-Выполнить миграции:
-
-```
-python3 manage.py migrate   (для *nix-систем)
-python manage.py migrate    (для Windows-систем)
-```
-
-Запустить проект:
-
-```
-python3 manage.py runserver (для *nix-систем)
-python manage.py runserver  (для Windows-систем)
-```
-
 Перейти в браузере по адресу
 
 ```
-http://127.0.0.1:8000
+http://127.0.0.1:80
 ```
 
 ### Авторизация пользователей:
@@ -127,7 +109,13 @@ http://127.0.0.1:8000/redoc/
 ```
 подключена документация API YaMDb. В ней описаны возможные запросы к API и структура ожидаемых ответов. Для каждого запроса указаны уровни прав доступа: пользовательские роли, которым разрешён запрос.
 
+##Над проектом работали:
 
-## Первоначальное наполнение БД
+Александр Вишневский
+GitHub: https://github.com/alex-s-nik
 
-В проекте есть возможность сделать наполнение проекта первоначальными данными. Для этого необходимо в директории ```static``` разместить папку ```data```. В ней должны быть .csv-файлы с именами ```category.csv```, ```comments.csv```, ```genre_title.csv```, ```genre.csv```, ```review.csv```, ```titles.csv``` и ```users.csv```. Данные необходимо размещать перед выполнением миграций.
+Алексей	Стрельцов
+GitHub: https://github.com/Kellerian
+
+Михаил Усенко
+GitHub: https://github.com/RussianPostman
